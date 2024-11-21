@@ -1,0 +1,76 @@
+############### OUTPUT ###############
+
+input_data:
+  filepath: "ps_input/"
+  filename: "raw_loess_all"
+  format: "csv"
+
+data_for_ps:
+  filepath: "ps_input/"
+  filename: "data_for_ps"
+  format: "csv"
+
+data_for_selective_int:
+  filepath: "ps_input/"
+  filename: "data_for_selective_int"
+  format: "csv"
+
+intermediate_data:
+  filepath: "output/"
+  filename: "interim_data"
+  format: "csv"
+
+ps_data:
+  filepath: "output/"
+  filename: "ps_data"
+  format: "csv"
+
+ps_full_data:
+  filepath: "output/"
+  filename: "ps_full_data"
+  format: "csv"
+  
+vtm_input_data:
+  filepath: "ps_input/"
+  filename: "vtm_input_data"
+  format: "csv"
+  
+vtm_data:
+  filepath: "output/"
+  filename: "vtm_data"
+  format: "csv"
+
+vtm_flow_combinations:
+  filepath: "output/"
+  filename: "vtm_flow_combinations"
+  format: "xlsx"
+
+sku_MT_after_selective_int:
+  filepath: "output/"
+  filename: "sku_MT_after_selective_int"
+  format: "csv"
+
+# RGMx outputs
+RGM_PS_VTM:
+  filepath: "output/rgmx/"
+  filename: "RGM_PS_VTM_disagg"
+  format: "csv"
+  tag_: rgmx_output
+
+RGM_SIMULATION_CONFIG:
+  filepath: "output/rgmx/"
+  filename: "RGM_SIMULATION_CONFIG"
+  format: "csv"
+  tag_: rgmx_output
+
+RGM_PS_STRUCTURE:
+  filepath: "output/rgmx/"
+  filename: "RGM_PS_STRUCTURE"
+  format: "csv"
+  tag_: rgmx_output
+
+SOURCE_FEEDS_MANIFEST:
+  filepath: "output/rgmx/"
+  filename: "SOURCE_FEEDS_MANIFEST"
+  format: "csv"
+  tag_: rgmx_output

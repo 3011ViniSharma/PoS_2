@@ -1,0 +1,176 @@
+ps_vtm:
+    default_vars:
+      volume: "net_sales_volume" 
+      value_col: "net_sales_with_taxes" 
+      lvl1: &lvl1 "ppg_nm" # this should match with lvl1 config in ewb params
+      lvl2: &lvl2 "retailer_id" # this should match with lvl2 config in ewb params 
+      lvl3: &lvl3 ""
+      item: *lvl1 # should be product_id, item_id or lowest level grouping column (can be ppg), match with lvl1 config above
+      type_col: ""
+      attrlist: [ "product_sub_category","lubes_natural_vs_ao","durex_flag", "top_brand_flag", "skyn_flag", "pl_flag", "mates_flag", "trojan_flag", "balance_activ_flag",
+                  "ky_flag", "gel_flag", "jelly_flag", "cream_flag", "ampoul_flag", "feeling_intimacy_flag", "basic_confidence_flag", "fun_adventure_flag", "whtlines_lubes_flag","basconfd_lubes_flag", "funadvnt_lubes_flag","latex_vs_non_latex","skyn_durex_ao","subbrand_nm", "product_attr1", "flavors", "pack_sizes", "need_state", "form", "pack_size_lseq10_condo", "price_tier_durex_condo_specific", "condo_prices_ls_07", "lubes_prices_ls_023_1", "condo_revised_xl_regular", "mutual_climax_ao", "ultimate_intense_ao", "extra_safe_ao", "condo_ls_20_pack", "feeling_basic_added", "pack_size_lseq12_condo"] 
+      
+      nlevels: 4
+      channel: "retailer_id"
+      weight_distr: "acv_wtd_distribution"
+      trend_col: "trend_term"
+      seasons: "monthname"
+      add_pv_model_cols: []
+      add_dv_model_cols: []
+      attrimp_quantile: 0.9 #if we want to take top 90% of Good Data
+      attrsumm_wt: [10, 3, 1, 2, 2, 2, 0.75] # used in get_attr_summary
+      lvl_wt: [3,1] # used in calculate  level weights
+      create_struct_thresh: 0.01 # used as min share for tree nodes - create_ps/between
+      time_period: "year_week"
+      drop_thresh: 1 #used in create_ps
+      top: 4
+    pos_purchase_structures:
+      data:
+        variable_selection: [] # can be left blank
+        ###Note: you MUST include all variables needed to be included for transformation in this list 
+        ###EVEN if you put it under variable_transformation_def
+        ###Note: putting a variable under variable_selection but not variable_transformation_Def defaults to getting the top attribute values (see above under default_vars) by sales_col
+        grouping_cols: [] #can be left blank
+        variable_transformation_def:
+          brand_nm:
+            transform_1:
+              how: "predefined"
+              what: ['DUREX']
+              name_to_use_for_others: "NOT_DUREX"
+              column_name_to_use: "durex_flag"
+            transform_2:
+              how: "top"
+              sort_on: "net_sales_with_taxes"
+              top: 4
+              what: []
+              name_to_use_for_others: "non_top_brands"
+              column_name_to_use: "top_brand_flag"
+            transform_3:
+              how: "predefined"
+              what: ['SKYN']
+              name_to_use_for_others: "NOT_SKYN"
+              column_name_to_use: "skyn_flag"
+            transform_4:
+              how: "predefined"
+              what: ['PRIVATE LABEL']
+              name_to_use_for_others: "NOT_PL"
+              column_name_to_use: "pl_flag"
+            transform_5:
+              how: "predefined"
+              what: ['MATES']
+              name_to_use_for_others: "NOT_MATES"
+              column_name_to_use: "mates_flag"
+            transform_6:
+              how: "predefined"
+              what: ['TROJAN']
+              name_to_use_for_others: "NOT_TROJAN"
+              column_name_to_use: "trojan_flag"
+            transform_7:
+              how: "predefined"
+              what: ['BALANCE ACTIV']
+              name_to_use_for_others: "NOT_BALANCE_ACTIV"
+              column_name_to_use: "balance_activ_flag"
+            transform_8:
+              how: "predefined"
+              what: ['K-Y']
+              name_to_use_for_others: "NOT_KY"
+              column_name_to_use: "ky_flag"
+          form:
+            transform_1:
+              how: "predefined"
+              what: ['GEL']
+              name_to_use_for_others: "NOT_GEL"
+              column_name_to_use: "gel_flag"
+            transform_2:
+              how: "predefined"
+              what: ['JELLY']
+              name_to_use_for_others: "NOT_JELLY"
+              column_name_to_use: "jelly_flag"
+            transform_3:
+              how: "predefined"
+              what: ['CREAM']
+              name_to_use_for_others: "NOT_CREAM"
+              column_name_to_use: "cream_flag"
+            transform_4:
+              how: "predefined"
+              what: ['AMPOUL']
+              name_to_use_for_others: "NOT_AMPOUL"
+              column_name_to_use: "ampoul_flag"
+          need_state:
+            transform_1:
+              how: "predefined"
+              what: ['FEELING & INTIMACY']
+              name_to_use_for_others: "NOT_FEELING_INITMACY"
+              column_name_to_use: "feeling_intimacy_flag"
+            transform_2:
+              how: "predefined"
+              what: ['BASIC CONFIDENCE']
+              name_to_use_for_others: "NOT_BASIC_CONFIDENCE"
+              column_name_to_use: "basic_confidence_flag"  
+            transform_3:
+              how: "predefined"
+              what: ['FUN & ADVENTURE']
+              name_to_use_for_others: "NOT_FUN_ADVENTURE"
+              column_name_to_use: "fun_adventure_flag"             
+            transform_4:
+              how: "predefined"
+              what: ['BASCONFD']
+              name_to_use_for_others: "NOT_BASCONFD"
+              column_name_to_use: "basconfd_lubes_flag"
+            transform_5:
+              how: "predefined"
+              what: ['WHTLINES']
+              name_to_use_for_others: "NOT_WHTLINES"
+              column_name_to_use: "whtlines_lubes_flag"
+            transform_6:
+              how: "predefined"
+              what: ['FUNADVNT']
+              name_to_use_for_others: "NOT_FUNADVNT"
+              column_name_to_use: "funadvnt_lubes_flag"
+
+
+    vtm:
+      structure:
+        vtm_factor: 1
+        fill_vol_na: 0.001
+      walkrate:
+        wr_avg_gbl_var: 0.05
+        wr_index_gbl_var: 1
+        wr_size_gbl_var: 0
+        wr_shape_gbl_var: 0.5
+        rescale: True
+      tone_down_vars:
+      ###Note: you can add, delete, modify the vars here with the relevant tone_down_vars
+      #generic toning factors for Purchase Structure Levels starts from 0.4 - 0.9
+        retailer_id: 0
+        X2: 0 #Level_1 :0.45
+        X3: 0.4
+        X4: 0.5
+        X5: 0.6
+        X6: 0.7
+        X7: 0.8
+      calc_flow_combos:
+        combos: [['X2'], ['X2', 'X3'], ['X2', 'X3', 'X4'], ['X2', 'X3', 'X4', 'X5'], ['X2', 'X3', 'X4', 'X5', 'X6'], ['form'], ['need_state'], ['latex flag'], ['brand_nm'], ["retailer_id"]] 
+    
+    rgm_outputs:
+      SOURCE_FEEDS_MANIFEST:
+        files_order:
+        - RGM_PS_VTM
+        - RGM_PS_STRUCTURE
+        - RGM_SIMULATION_CONFIG
+        - SOURCE_FEEDS_MANIFEST
+      RGM_SIMULATION_CONFIG:
+        channel_nm: ALL #Change for data team 
+        sim_option: 0 # default
+        sim_param_5: 1 # default
+        sim_param_6: 1 # default
+        sim_param_7: 1 # default
+        sim_param_8: 1 # default
+        sim_param_9: 1 # default
+        sim_param_10: 1 # default
+        sim_block: ALL # default
+      RGM_PS_STRUCTURE:
+        pos_data_column_mapping:
+          UID: UID # name of column that contains UID
+          END_NODE: END_NODE # name of column that has end node
+          PPG_NM: PPG_NM # name of PPG column

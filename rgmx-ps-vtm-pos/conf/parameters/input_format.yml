@@ -1,0 +1,558 @@
+schema :
+  title: "econ_input_data"
+  description: "..."
+  columns: [
+    {
+      "name": "PERIOD_ID",
+      "type": "string",
+      "metadata": {
+        "format": "M/d/y",
+        "type": "timestamp",
+        "standardized_name": "period_id"
+      }
+    },
+    {
+      "name": "PRODUCT_PACK_COUNT",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "product_pack_count"
+      }
+    },
+    {
+      "name": "PRODUCT_UNIT_SIZE",
+      "type": "string",
+      "metadata": {
+        "type": "string",
+        "standardized_name": "PRODUCT_UNIT_SIZE"
+      }
+    },
+    {
+      "name": "PRODUCT_ID",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "product_id"
+      }
+    },
+    {
+      "name": "PRODUCT_NM",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "lower(@)"
+        ],
+        "type": "string",
+        "standardized_name": "product_nm"
+      }
+    },
+    {
+      "name": "FLAVORS",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "flavors"
+      }
+    },
+    {
+      "name": "PACK_SIZES",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "pack_sizes"
+      }
+    },
+    {
+      "name": "NEED_STATE",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "need_state"
+      }
+    },
+    {
+      "name": "PACK_SIZE_LSEQ12_CONDO",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "pack_size_lseq12_condo"
+      }
+    },
+    {
+      "name": "FORM",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "form"
+      }
+    },
+    {
+      "name": "ACV_WTD_DISTRIBUTION",
+      "type": "double",
+      "metadata": {
+        "type": "double",
+        "standardized_name": "acv_wtd_distribution"
+      }
+    },
+    {
+      "name": "ACV_ANY_PROMO",
+      "type": "double",
+      "metadata": {
+        "type": "double",
+        "standardized_name": "acv_any_promo"
+      }
+    },
+    {
+      "name": "ACV_TPR",
+      "type": "double",
+      "metadata": {
+        "type": "double",
+        "standardized_name": "acv_tpr"
+      }
+    },
+    {
+      "name": "ACV_NUM_DISTRIBUTION",
+      "type": "double",
+      "metadata": {
+        "type": "double",
+        "standardized_name": "acv_num_distribution"
+      }
+    },
+    {
+      "name": "ACV_FEATURE_AND_DISPLAY",
+      "type": "double",
+      "metadata": {
+        "type": "double",
+        "standardized_name": "acv_feature_and_display"
+      }
+    },
+    {
+      "name": "ACV_DISPLAY",
+      "type": "double",
+      "metadata": {
+        "type": "double",
+        "standardized_name": "acv_display"
+      }
+    },
+    {
+      "name": "ACV_FEATURE",
+      "type": "double",
+      "metadata": {
+        "type": "double",
+        "standardized_name": "acv_feature"
+      }
+    },
+    {
+      "name": "RETAILER_ID",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "retailer_id"
+      }
+    },
+    {
+      "name": "PPG_NM",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "ppg_nm"
+      }
+    },
+    {
+      "name": "BRAND_NM",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "brand_nm"
+      }
+    },
+    {
+      "name": "SUBBRAND_NM",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "subbrand_nm"
+      }
+    },
+    {
+      "name": "PRODUCT_CATEGORY",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "product_category"
+      }
+    },
+    {
+      "name": "PRICE_TIER_DUREX_CONDO_SPRECIFIC",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "price_tier_durex_condo_specific"
+      }
+    },
+    {
+      "name": "CONDO_PRICES_LS_07",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "condo_prices_ls_07"
+      }
+    },
+    {
+      "name": "LUBES_PRICES_ls_023_1",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "lubes_prices_ls_023_1"
+      }
+    },
+    {
+      "name": "CONDO_REVISED_XL_REGULAR",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "condo_revised_xl_regular"
+      }
+    },
+    {
+      "name": "PRODUCT_SUB_CATEGORY",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "product_sub_category"
+      }
+    },
+    {
+      "name": "CONDO_LS_20_PACK",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "condo_ls_20_pack"
+      }
+    },
+    {
+      "name": "EXTRA_SAFE_AO",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "extra_safe_ao"
+      }
+    },
+    {
+      "name": "ULTIMATE_INTENSE_AO",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "ultimate_intense_ao"
+      }
+    },
+    {
+      "name": "MUTUAL_CLIMAX_AO",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "mutual_climax_ao"
+      }
+    },
+    {
+      "name": "FEELING_BASIC_ADDED",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "feeling_basic_added"
+      }
+    },
+    {
+      "name": "MANUFACTURER_NM",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "manufacturer_nm"
+      }
+    },
+    {
+      "name": "LATEX_vs_NON_LATEX",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "latex_vs_non_latex"
+      }
+    },
+    {
+      "name": "CONDOM_SIZE",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "condom_size"
+      }
+    },
+    {
+      "name": "THIN_VS_AO",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "thin_vs_ao"
+      }
+    },
+    {
+      "name": "LUBES_NATURAL_VS_AO",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "lubes_natural_vs_ao"
+      }
+    },
+    {
+      "name": "SKYN_DUREX_AO",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "skyn_durex_ao"
+      }
+    },
+    {
+      "name": "CONDOM_SIZE_LARGE_XL_COMBINED",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "condom_size_large_xl_combined"
+      }
+    },
+    {
+      "name": "PACK_SIZE_LSEQ10_CONDO",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "pack_size_lseq10_condo"
+      }
+    },
+    {
+      "name": "PRODUCT_IS_MULTIPACK",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "product_is_multipack"
+      }
+    },
+    {
+      "name": "PRODUCT_UNIT_SIZE",
+      "type": "double",
+      "metadata": {
+        "type": "double",
+        "standardized_name": "product_unit_size"
+      }
+    },
+    {
+      "name": "PRODUCT_UNIT_SIZE_UOM",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "product_unit_size_uom"
+      }
+    },
+    {
+      "name": "UNIT_OF_MEASUREMENT",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "unit_of_measurement"
+      }
+    },
+    {
+      "name": "NET_SALES_WITH_TAXES",
+      "type": "double",
+      "metadata": {
+        "type": "double",
+        "standardized_name": "net_sales_with_taxes"
+      }
+    },
+    {
+      "name": "NET_SALES_VOLUME",
+      "type": "Double",
+      "metadata": {
+        "type": "Double",
+        "standardized_name": "net_sales_volume"
+      }
+    },
+    {
+      "name": "WEEK_NM",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "week_nm"
+      }
+    },
+#    {
+#      "name": "QUARTER_NM",
+#      "type": "string",
+#      "metadata": {
+#        "transformations": [
+#          "trim(@)",
+#          "upper(@)"
+#        ],
+#        "type": "string",
+#        "standardized_name": "quarter_nm"
+#      }
+#    },
+    {
+      "name": "MONTH_NM",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "month_nm"
+      }
+    },
+    {
+      "name": "YEAR_NM",
+      "type": "string",
+      "metadata": {
+        "transformations": [
+          "trim(@)",
+          "upper(@)"
+        ],
+        "type": "string",
+        "standardized_name": "year_nm"
+      }
+    }
+  ]

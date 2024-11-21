@@ -1,0 +1,173 @@
+############### INPUT ###############
+
+input_data_prep:
+  filepath: "00_input/"
+  filename: "SWB_POS_v6_"
+  format: "csv"
+  type: spark
+
+additional_data_01:
+  filepath: "00_input/additional_data/"
+  filename: "retailer_product_date_level"
+  format: "csv"
+  type: spark
+
+additional_data_02:
+  filepath: "00_input/additional_data/"
+  filename: "retailer_month"
+  format: "csv"
+  type: spark
+
+additional_data_03:
+  filepath: "00_input/additional_data/"
+  filename: "retailer_date"
+  format: "csv"
+  type: spark
+
+input_covid_flag_1:
+  filepath: "00_input/covid_data/"
+  filename: "covid_flag_1_filters_sample"
+  format: "csv"
+  type: spark
+
+input_covid_flag_2:
+  filepath: "00_input/covid_data/"
+  filename: "covid_flag_2_filters_sample"
+  format: "csv"
+  type: spark
+
+ppg_mapping:
+  filepath: "00_input/ppg_mapping/"
+  filename: "ppg_mapping_v2"
+  format: "csv"
+  
+holiday_list:
+  filepath: "00_input/"
+  filename: "Holidays_List_Generic"
+  format: "csv"
+
+
+############### OUTPUT ###############
+
+spark_all_data:
+  filepath: "01_intermediate_outputs/"
+  filename: "spark_all_data"
+  format: "csv"
+  type: spark
+
+intermediate_good_data:
+  filepath: "01_intermediate_outputs/"
+  filename: "rgm_econ_good_data"
+  format: "csv"
+
+intermediate_bad_data:
+  filepath: "01_intermediate_outputs/"
+  filename: "rgm_econ_bad_data"
+  format: "csv"
+
+intermediate_all_data:
+  filepath: "01_intermediate_outputs/"
+  filename: "rgm_econ_all_data"
+  format: "csv"
+
+intermediate_unique_pairs:
+  filepath: "01_intermediate_outputs/"
+  filename: "rgm_econ_unique_pairs"
+  format: "csv"
+
+run_parameters:
+  filepath: "00_input/"
+  filename: "parameters"
+  format: "txt"
+
+temp_file:
+  filepath: "01_intermediate_outputs/"
+  filename: "temp_file"
+  format: "parquet"
+  type: spark
+
+loess_prediction:
+  filepath: "04_model_results/loess/"
+  filename: "loess_prediction"
+  format: "csv"
+
+baseline_glm_results:
+  table_name: ""
+  db_name: ""
+  filepath: "04_model_results/"
+  filename: "baseline_glm_results"
+  format: "csv"
+
+data_to_fit:
+  filepath: "01_intermediate_outputs/"
+  filename: "data_to_fit"
+  format: "csv"
+
+fixed_effects:
+  filepath: "01_intermediate_outputs/"
+  filename: "fixed_effects"
+  format: "txt"
+
+model_results_struct_without_cpi:
+  filepath: "04_model_results/model_results/"
+  filename: "model_results_struct_without_cpi"
+  format: "csv"
+
+full_results_struct_without_cpi:
+  filepath: "04_model_results/model_results/"
+  filename: "full_model_results_struct_without_cpi"
+  format: "csv"
+
+model_results_struct_with_cpi:
+  filepath: "04_model_results/model_results/"
+  filename: "model_results_struct_with_cpi"
+  format: "csv"
+
+full_results_struct_with_cpi:
+  filepath: "04_model_results/model_results/"
+  filename: "full_model_results_struct_with_cpi"
+  format: "csv"
+
+model_results_unstruct_without_cpi:
+  filepath: "04_model_results/model_results/"
+  filename: "model_results_unstruct_without_cpi"
+  format: "csv"
+
+full_results_unstruct_without_cpi:
+  filepath: "04_model_results/model_results/"
+  filename: "full_model_results_unstruct_without_cpi"
+  format: "csv"
+
+model_results_unstruct_with_cpi:
+  filepath: "04_model_results/model_results/"
+  filename: "model_results_unstruct_with_cpi"
+  format: "csv"
+
+full_results_unstruct_with_cpi:
+  filepath: "04_model_results/model_results/"
+  filename: "full_model_results_unstruct_with_cpi"
+  format: "csv"
+
+model_consolidated_results:
+  filepath: "04_model_results/model_results/"
+  filename: "model_consolidated_results"
+  format: "csv"
+
+model_oot_data:
+  filepath: "01_intermediate_outputs/"
+  filename: "model_oot_data"
+  format: "csv"
+  overWrite: False
+
+oot_weekly:
+  filepath: "01_intermediate_outputs/"
+  filename: "oot_data"
+  format: "csv"
+  overWrite: False
+
+oot_prediction:
+  filepath: "04_model_results/model_results/"
+  filename: "oot_prediction"
+  format: "csv"
+  overWrite: False
+

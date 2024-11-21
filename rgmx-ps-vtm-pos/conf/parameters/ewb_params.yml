@@ -1,0 +1,180 @@
+ewb:
+  data_management:
+    oot_pred: False
+    # set to True is you want to use additional input. configure in the additional_input_params file
+    use_additional_input: False
+    additional_datasets_list: ['additional_data_01', 'additional_data_02', 'additional_data_03']
+
+    dir_path_spark: dbfs:/FileStore/tables/Yashaswa_Verma/SWB_POS_BASED/ #Change the address basis DBFS folder structure
+    dir_path: /dbfs/FileStore/tables/Yashaswa_Verma/SWB_POS_BASED/ # keep the same as dir_path_spark, except the colon.
+    loess_R_path: /Workspace/Repos/yashaswa.verma@reckitt.com/Yash_Merge_Econ_Pos_PSVTM_9_April_24/src/models/loess.R # Change the path basis RB id creds and Repo name
+
+    # specify levels of aggregation here
+    levels:
+      lvl1: &lvl1 'ppg_nm'
+      lvl2: &lvl2 'retailer_id'
+      lvl3: ''
+
+    # optional parameter to define the combination of columns to be concatenated to create PPG column
+    ppg_def: ''
+
+    # column with date
+    column_with_date: 'period_id'
+
+    # column with value sales:
+    value: &value_col "net_sales_with_taxes"
+
+    # column with volume sales
+    volume: &volume_col "net_sales_volume"
+
+    # column with number of distribution points
+    items : &items ''
+
+    # the number of latest weeks/months to keep in the data
+    last_weeks_months_cut_off: 156
+
+    # can be used to remove any specific pairs/ outlier according to client context. Pairs will be marked as 'DROP: Data Cleaning'
+    lvl1_to_remove: []
+    lvl2_to_remove: []
+    weeks_or_months_to_remove: []
+
+    # granularity of data. specify either "week" or "month"
+    granularity: 'week'
+
+    # column with distribution:
+    distrib_var: &distrib_col 'acv_wtd_distribution'
+
+    # column with price:
+    price_col: &price_col 'price'
+
+    # list of column to apply log transformation to:
+    params_to_log_transform: [*volume_col, *distrib_col, *price_col,'smooth_acv','acv_diff', 'acv_any_promo']
+
+    # define a list of columns of which weighted average will be taken when aggregating the data set to level 1-3/week/month here
+    colnames_weighted_avg: ["acv_any_promo","acv_wtd_distribution"]
+
+    # define a list of columns of which sum will be taken when aggregating the data set to level 1-3/week/month here
+    colnames_to_sum : [*volume_col,*value_col]
+
+    # define a list of categorical columns to keep when aggregating the data set to level 1-3/week/month here
+    # Each column in the list must contain only one unique value per combination of levels 1-3.
+    additional_raw_variables: ["ppg_nm","retailer_id" ,"manufacturer_nm" ,"product_sub_category", "brand_nm", "subbrand_nm", "product_attr1", "flavors", "pack_sizes", "need_state", "form", "product_attr7","latex_vs_non_latex", "thin_vs_ao", "lubes_natural_vs_ao","acv_tpr","skyn_durex_ao", "pack_size_lseq10_condo", "price_tier_durex_condo_specific", "condo_prices_ls_07", "lubes_prices_ls_023_1", "condo_revised_xl_regular", "mutual_climax_ao", "ultimate_intense_ao", "extra_safe_ao", "condo_ls_20_pack", "feeling_basic_added", "pack_size_lseq12_condo"] 
+    cpi_crit: 0.01 # threshold for cpi
+
+    # specify years in which you wish to calculate peaks. if you do not wish to calculate peaks, keep this parameter as an empty list
+    eval_peaks_years: [2020, 2021, 2022, 2023]
+
+    # if you specified eval_peaks_years, specify threshold percentage difference between given weeks volume and average volume here
+    peak_percentage_lmt: 30
+
+    # keep only PPGs which contribute to the top percentile specified here
+    percentile_pairs: 0.95
+
+    # minimal number of weeks and months for each level 1-3 combinations
+    week_count_out: 30
+    month_count_out: 20
+
+    # parameters for coefficient of variation of price
+    # threshold for coefficient of variation of price
+    cv_price_out: 2
+    # whether to apply additional filter to keep values dropped by cv_price_out
+    additional_filter : False
+    # list of level 2 values to keep if cv is above cv_price_crit
+    add_filter4_val : '' # ["Walmart Corp-RMA - Walmart"]
+    # threshold for cv for level 2 values from add_filter4_val if additional_filter == True
+    cv_price_crit : 0.01
+
+    # filter rows where volume is less than volume_filter_pct of the average volume
+    volume_filter_pct: 0.1
+
+    # specify a name of a column with a promo flag if present in the data. otherwise will be created in code
+    promo_flag : ''
+
+    # if you have a column in the input data that has flag for bottom 5 percent PPGs, specify here
+    bottom5_flag : ''
+
+    # specifiy the manufacturer column & manufacturer name, so the percentile pairs/bottom 5 % flag does not drop own PPGs/Products
+    manufacturer_col : 'manufacturer_nm'
+    manufacturer_name : ['RECKITT BENCKISER']
+
+
+    # specify columns on which to group data to calculate opi - manufacturer price index
+    opi_grouping : [*lvl2, "manufacturer_nm", "year_week"]
+
+    # acv promo parameters:
+    # specify columns with acv promo variables for acv_any_promo calculation
+    acv_promos : '' #['acv_feature_and_display', 'acv_display', 'acv_feature', 'acv_tpr']
+    #["weighted_acv_feature_and_display", "weighted_acv_display", "weighted_acv_feature", #"weighted_acv_tpr", "weighted_acv_special_pack"]
+
+    #acv_promos : ['acv_any_promo']
+
+    # specify new names for variables for acv_promos divided by 100 in same order as specified in 104
+    #acv_vars_list : ['acv_feature_by_100','acv_display_by_100','acv_feature_and_display_by_100','acv_tpr_only_by_100'] #uncommented to check
+    #['acv_fd', 'acv_display', 'acv_feature', 'acv_tpr']
+    # acv_vars_list : ['acv_any_promo_by_100']
+
+    acv_vars_list : '' #['acv_feature_and_display_log', 'acv_display_log', 'acv_feature_log', 'acv_tpr_log']
+    #commented to check
+
+    #acv_vars_list : ['acv_any_promo_log']
+
+    # if 'volume_promo_var' == '', use 'promo_flag' == '' or if you have column for promo_flag in the input_data use
+    # name of this column # if 'volume_promo_var' != '', use 'promo_flag' = '' in any case, even if you have a
+    # column for promo in the input_data
+    volume_promo_var : ''
+
+    # if share sold on promo if larger than the specified value, promo flag is set to 1
+    volume_ratio : 0
+    pantry_loading_dynamic : True
+    pantry_flags : 3
+    max_pantry_flags : 5
+    pantry_loading : &pl src.utils.utils.pantry_loading
+    all_pl_cols: src.utils.utils.all_pantry_loading_list
+    
+    # automate holiday flags parameters
+    
+    hol_level:  "retailer_id" 
+    hol_peak_percentage_lmt: 10
+    hol_dip_percentage_lmt: -20
+    
+    # automate promo flag parameters
+    
+    outlier_retailers: [] #
+    
+    
+  modeling:
+    common:
+      covid_factor: &covid_factor "covid_period"
+
+      # target variable for modeling. do not change if you wish to use log of volume as the target, since this
+      # automatically creates a column using log_
+      target_var: src.utils.utils.log_volume
+
+      # price term for modeling. usually log_price
+      price_term: &log_price "log_price"
+
+      # seasonality term for modeling
+      seasonality_term: &seasonality_term "month"
+
+    loess:
+      # specify the minimal number of weeks/months for pair to go into loess step. keep this parameter <= week_count_out
+      min_weeks_months_loess: 10
+
+      # specify True if you wish to use R loess; False if you want to run python version of trend. in this case specify whether to use pygam in use_pygam
+      use_loess_from_R:
+        enabled: True
+        # specify degrees of freedom
+        loess_degree: 4
+
+      # if set to true, it fits intercepts for the GAM models. If set to False develops gam models without the intercepts
+      fit_intercept: True
+
+      # list of integers that define the number of splines to be used in the pygam approach
+      n_splines: [7,8,9,10]
+
+      # define the span or fraction of data points to be used in local regression (Loess)
+      span: 0.3
+
+      # define the independent_feature to be used in the linear model to regress against residuals
+      independent_features_linear: &loess_indep_vars  [*log_price, "log_acv_wtd_distribution", *seasonality_term, "New_Years"]
+

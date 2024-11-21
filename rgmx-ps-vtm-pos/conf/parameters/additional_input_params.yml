@@ -1,0 +1,151 @@
+additional_input_params:
+      additional_data_01:
+        # specify granularity of additional data (levels), that you want to have
+        add_granularity: ["product_id", "retailer_id"]
+
+        # specify time granularity of the data before aggregation - can be day, week, or month
+        add_time_granularity: "day"
+
+        # specify columns with date
+        add_date_col_name: "audit_date"
+
+        # specify parameters for aggregation. you can specify any of the built-in functions (i.e: sum, max, mean, count,
+        # first, skewness, kurtosis, stddev, variance) or wtd_average to take a weighted average of a column.
+        # specify columns to transform and aliases for transformed columns and a columns to weight by in case of
+        # wtd_average transformation.
+        # data is sorted by add_granularity and date in ascending order, keep that in mind for first/last function
+        aggregation_params:
+          [
+            {
+              "transformation": "sum",
+              "columns": ["no_cooler_doors_rdpl", "promo_spend_rdpl", "cooler_investment_rdpl"],
+              "aliases": ["no_cooler_doors_rdpl", "promo_spend_rdpl", "cooler_investment_rdpl"],
+            },
+#            {
+#              "transformation": "variance",
+#              "columns": ["some_num_column"],
+#              "aliases": ["variance_some_num_column"],
+#            },
+#            {
+#              "transformation": "wtd_average",
+#              "columns": ["other_num_column"],
+#              "aliases": ["wtd_other_num_column"],
+#              "weight_by": "weight_column",
+#            },
+          ]
+
+        # specify names of columns you want to keep in case aggregation_params is empty in a list or specify "all" if
+        # you want to keep all. if aggregation_params is not empty, it will keep columns specified in aliases
+        colnames_to_keep: []
+
+        # specify columns you want to dummy encode. keep the list empty if you don't need this transformation. each
+        # column in the list must contain only one unique value per combination of levels + period
+        colnames_to_dummy: []
+
+        # define custom transformations to apply to data. follow usual spark syntax for expression when you do so. define
+        # a column name to which you with to write the result
+        custom_transformations:
+          [
+            {
+              "formula": "case when acv_feature >= 0 then acv_feature * 100 else acv_feature * 200 end",
+              "column_name": "acv_feature_transformed",
+            },
+            {
+              "formula": "log(promo_spend_rdpl)",
+              "column_name": "log_promo_spend_rdpl",
+            },
+          ]
+ ##########################################################################################################################################################
+      additional_data_02:
+        # specify granularity of additional data (levels), that you want to have
+        add_granularity: ["retailer_id"]
+
+        # specify time granularity of the data before aggregation - can be day, week, or month
+        add_time_granularity: "month"
+
+        # specify columns with date
+        add_date_col_name: "audit_date"
+
+        # specify parameters for aggregation. you can specify any of the built-in functions (i.e: sum, max, mean, count,
+        # first, skewness, kurtosis, stddev, variance) or wtd_average to take a weighted average of a column.
+        # specify columns to transform and aliases for transformed columns and a columns to weight by in case of
+        # wtd_average transformation.
+        # data is sorted by add_granularity and date in ascending order, keep that in mind for first/last function
+        aggregation_params:
+          [
+          ]
+
+        # specify names of columns you want to keep in case aggregation_params is empty in a list or specify "all" if
+        # you want to keep all. if aggregation_params is not empty, it will keep columns specified in aliases
+        colnames_to_keep: ['promo_spend_rml']
+
+        # specify columns you want to dummy encode. keep the list empty if you don't need this transformation. each
+        # column in the list must contain only one unique value per combination of levels + period
+        colnames_to_dummy: ['region_rml']
+
+        # define custom transformations to apply to data. follow usual spark syntax for expression when you do so. define
+        # a column name to which you with to write the result
+        custom_transformations:
+          [
+            {
+              "formula": "log(promo_spend_rml)",
+              "column_name": "log_promo_spend_rml",
+            },
+          ]
+  ##########################################################################################################################################################
+      additional_data_03:
+          # specify granularity of additional data (levels), that you want to have
+        add_granularity: ["retailer_id"]
+
+        # specify time granularity of the data before aggregation - can be day, week, or month
+        add_time_granularity: "day"
+
+        # specify columns with date
+        add_date_col_name: "audit_date"
+
+        # specify parameters for aggregation. you can specify any of the built-in functions (i.e: sum, max, mean, count,
+        # first, skewness, kurtosis, stddev, variance) or wtd_average to take a weighted average of a column.
+        # specify columns to transform and aliases for transformed columns and a columns to weight by in case of
+        # wtd_average transformation.
+        # data is sorted by add_granularity and date in ascending order, keep that in mind for first/last function
+        aggregation_params:
+          [
+            {
+              "transformation": "sum",
+              "columns": ["no_cooler_doors_rdl", "cooler_investment_rdl"],
+              "aliases": ["no_cooler_doors_rdl", "cooler_investment_rdl"],
+            },
+            {
+              "transformation": "wtd_average",
+              "columns": ["promo_spend_rdl"],
+              "aliases": ["promo_spend_rdl_wtd"],
+              "weight_by": "cooler_investment_rdl",
+            },
+            {
+              "transformation": "first",
+              "columns": ["region_rdl"],
+              "aliases": ["upd_region_rdl"],
+            },
+          ]
+
+        # specify names of columns you want to keep in case aggregation_params is empty in a list or specify "all" if
+        # you want to keep all. if aggregation_params is not empty, it will keep columns specified in aliases
+        colnames_to_keep: []
+
+        # specify columns you want to dummy encode. keep the list empty if you don't need this transformation. each
+        # column in the list must contain only one unique value per combination of levels + period
+        colnames_to_dummy: ['upd_region_rdl']
+
+        # define custom transformations to apply to data. follow usual spark syntax for expression when you do so. define
+        # a column name to which you with to write the result
+        custom_transformations:
+          [
+            {
+              "formula": "log(cooler_investment_rdl)",
+              "column_name": "log_cooler_investment_rdl",
+            },
+            {
+              "formula": "case when acv_feature >= 0 then cooler_investment_rdl * 100 else acv_feature * 200 end",
+              "column_name": "cooler_investment_rdl_transformed",
+            },
+          ]

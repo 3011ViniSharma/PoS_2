@@ -1,0 +1,183 @@
+additional_schema:
+  additional_data_01:
+    title: "additional_input_data"
+    description: "..."
+    columns:
+      [
+        {
+          "name": "AUDIT_DATE",
+          "type": "string",
+          "metadata":
+            {
+              "format": "d/M/y",
+              "type": "timestamp",
+              "standardized_name": "audit_date",
+            },
+        },
+        {
+          "name": "RETAILER_ID",
+          "type": "string",
+          "metadata":
+            {
+              "transformations": ["trim(@)", "upper(@)"],
+              "type": "string",
+              "standardized_name": "retailer_id",
+            },
+        },
+        {
+          "name": "PRODUCT_ID",
+          "type": "string",
+          "metadata":
+            {
+              "transformations": ["trim(@)", "upper(@)"],
+              "type": "string",
+              "standardized_name": "product_id",
+            },
+        },
+        {
+          "name": "no_cooler_doors_RPDL",
+          "type": "string",
+          "metadata":
+            {
+              "transformations": ["trim(@)", "upper(@)"],
+              "type": "string",
+              "standardized_name": "no_cooler_doors_rdpl",
+            },
+        },
+        {
+          "name": "Region_RPDL",
+          "type": "string",
+          "metadata":
+            {
+              "transformations": ["trim(@)", "upper(@)"],
+              "type": "string",
+              "standardized_name": "region_rdpl",
+            },
+        },
+        {
+          "name": "promo_spend_RPDL",
+          "type": "string",
+          "metadata":
+            {
+              "transformations": ["trim(@)", "upper(@)"],
+              "type": "string",
+              "standardized_name": "promo_spend_rdpl",
+            },
+        },
+        {
+            "name": "cooler_investment_RPDL",
+            "type": "string",
+            "metadata":
+              { "type": "double", "standardized_name": "cooler_investment_rdpl" },
+          },
+      ]
+#########################################################################################################################################################
+  additional_data_02:
+      title: "additional_input_data"
+      description: "..."
+      columns:
+        [
+          {
+            "name": "month_start_date",
+            "type": "string",
+            "metadata":
+              {
+                "format": "d/M/y",
+                "type": "timestamp",
+                "standardized_name": "audit_date",
+              },
+          },
+          {
+            "name": "RETAILER_ID",
+            "type": "string",
+            "metadata":
+              {
+                "transformations": ["trim(@)", "upper(@)"],
+                "type": "string",
+                "standardized_name": "retailer_id",
+              },
+          },
+          {
+            "name": "no_cooler_doors",
+            "type": "string",
+            "metadata":
+              { "type": "double", "standardized_name": "no_cooler_doors" },
+          },
+          {
+            "name": "Region_RML",
+            "type": "string",
+            "metadata":
+              {
+                "transformations": ["trim(@)", "upper(@)"],
+                "type": "string",
+                "standardized_name": "region_rml",
+              },
+          },
+          {
+            "name": "promo_spend_RML",
+            "type": "string",
+            "metadata":
+              { "type": "double", "standardized_name": "promo_spend_rml" },
+          },
+         {
+            "name": "cooler_investment_RML",
+            "type": "string",
+            "metadata":
+              { "type": "double", "standardized_name": "cooler_investment_rml" },
+          },
+        ]
+#########################################################################################################################################################
+  additional_data_03:
+      title: "additional_input_data"
+      description: "..."
+      columns:
+        [
+          {
+            "name": "AUDIT_DATE",
+            "type": "string",
+            "metadata":
+              {
+                "format": "d/M/y",
+                "type": "timestamp",
+                "standardized_name": "audit_date",
+              },
+          },
+          {
+            "name": "RETAILER_ID",
+            "type": "string",
+            "metadata":
+              {
+                "transformations": ["trim(@)", "upper(@)"],
+                "type": "string",
+                "standardized_name": "retailer_id",
+              },
+          },
+          {
+            "name": "Region_RDL",
+            "type": "string",
+            "metadata":
+              {
+                "transformations": ["trim(@)", "upper(@)"],
+                "type": "string",
+                "standardized_name": "region_rdl",
+              },
+          },
+          {
+            "name": "no_cooler_doors_RDL",
+            "type": "string",
+            "metadata":
+              { "type": "double", "standardized_name": "no_cooler_doors_rdl" },
+          },
+          {
+            "name": "promo_spend_RDL",
+            "type": "string",
+            "metadata":
+              { "type": "double", "standardized_name": "promo_spend_rdl" },
+          },
+          {
+            "name": "cooler_investment_RDL",
+            "type": "string",
+            "metadata":
+              { "type": "double", "standardized_name": "cooler_investment_rdl" },
+          },
+        ]

@@ -1,0 +1,167 @@
+# please ensure that if your data's granularity is in weeks - then all date values here should be weekly in the format yyyyww
+# and if granularity is monthly, then the values here should be monthly in the format yyyymm
+holidays_config:
+  holidays: [
+    {
+    # specify a name of a holiday here
+    "name": "New_Years",
+
+    # specify weeks or months with this holiday running
+    "weeks_or_months":
+        [
+            202002,
+            202101,
+            202102,
+            202202,
+            202203
+        ],
+     # if you wish to add holidays only to a certain PPGs, specify a filtering column, i.e brand_nm
+     "filter_column":"",
+     # if you specified filter_column, specify a filtering value, i.e 'BRAND1' and make sure it matches the standardized data
+     "filter_values":
+        [
+        ]
+    }
+#    {
+#    "name": "Superbowl",
+#    "weeks_or_months":
+#        [
+#            201805,
+#            201905,
+#            202005,
+#            202105
+#        ],
+#     "filter_column":"",
+#     "filter_values":
+#        [
+#        ]
+#    }
+#
+#    3_Valentines Day:
+#        - 201807
+#        - 201907
+#        - 202007
+#        - 202107
+#
+#    4_March Madness:
+#        - 201811
+#        - 201812
+#        - 201912
+#        - 201913
+#        - 202012
+#        - 202013
+#        - 202111
+#        - 202112
+#
+#    5_Easter:
+#        - 201813
+#        - 201916
+#        - 202015
+#        - 202113
+#
+#    6_Cinco de Mayo:
+#        - 201818
+#        - 201918
+#        - 202019
+#        - 202118
+#
+#    8_Fourth of July:
+#        - 201826
+#        - 201827
+#        - 201926
+#        - 201927
+#        - 202026
+#        - 202027
+#        - 202125
+#        - 202126
+#
+#    9_Labor Day:
+#        - 201835
+#        - 201836
+#        - 201935
+#        - 201936
+#        - 202036
+#        - 202037
+#        - 202136
+#        - 202137
+#
+#    11_Thanksgiving:
+#        - 201845
+#        - 201846
+#        - 201847
+#        - 201946
+#        - 201947
+#        - 201948
+#        - 202046
+#        - 202047
+#        - 202048
+#        - 202146
+#        - 202147
+#        - 202148
+
+#     12_Pre_xmas:
+#         - 201850
+#         - 201951
+#         - 202050
+#        - 201944
+#        - 202043
+#        - 202044
+#        - 202143
+#        - 202144
+
+#     13_Christmas:
+#         - 201851
+#         - 201952
+#         - 202051
+#        - 201952
+#        - 202051
+#        - 202052
+#        - 202151
+#        - 202152
+# ]
+    ]
+  # if you use create_covid_flag, configure covid periods here
+  covid_flags :
+    covid_flag_1 : False # whether to make covid_flag_1
+    covid_flag_2 : False # whether to make covid_flag_2
+    start_covid_period : 202008 # covid start period
+    covid_3_exclud_val : '' #['Total US - Conv'] - level 2 to NOT apply covid
+    covid_3_period_start : 202013 # covid period 3 start period
+    covid_3_period_end : 202013 # covid period 3 end period
+    covid_4_exclud_val : '' #['Total US - Conv", "Total US - Drug'] - level 2 to NOT apply covid
+    covid_4_period_start : 202014 # covid period 4 start period
+    covid_4_period_end : 202021 # covid period 4 end period
+
+  # if you use create_covid_columns, configure covid periods here
+  covid_phases: [
+    {
+    # specify a name of a phase here
+    "name":"pre-COVID",
+    # specify start and end weeks/months here
+    "weeks_or_months":{
+        "start": 201800,
+        "end": 202009
+    },
+    # if you wish to add holidays only to a certain PPGs, specify a filtering column, i.e brand_nm
+    "filter_column":"brand_nm",
+    # if you cpecified filter_column, specify a filtering value, i.e 'BRAND1' and make sure it matches the standardized data
+     "filter_values":
+        ['BRAND1'
+        ]
+    }
+#     phase1:
+#         start: 202010
+#         end: 202012
+
+#     phase2:
+#         start: 202013
+#         end: 202014
+
+#     phase3:
+#         start: 202015
+#         end: 202018
+
+#     post-COVID:
+#         start: 202019
+#         end: 202252
+]
